@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-function welcome() {
+export function welcome() {
     const txt = chalk.blue("\n\n        Welcome to Calculator\n Do you want to calculate some number?");
     return txt;
 }
-async function askName() {
+export async function askName() {
     await console.log(welcome());
     let user = await inquirer.prompt({
         name: "user_name",
@@ -17,7 +17,7 @@ async function askName() {
     });
 }
 const wait = async () => { await new Promise((r) => setTimeout(r, 2000)); };
-async function questions() {
+export async function questions() {
     const operations = await inquirer.prompt([
         {
             name: "ask_operators",
@@ -53,7 +53,7 @@ async function questions() {
 }
 let result;
 let defalut_ans = "Your answer is: ";
-async function selectOperation(operations, first_number, second_number) {
+export async function selectOperation(operations, first_number, second_number) {
     console.log(chalk.red("Calculating..."));
     await wait();
     switch (operations) {
@@ -84,7 +84,7 @@ async function selectOperation(operations, first_number, second_number) {
     }
 }
 let an_again = false;
-const ask = async () => {
+export const ask = async () => {
     let con_ask = await inquirer.prompt({
         name: "ask_again",
         type: "confirm",
@@ -98,7 +98,7 @@ const ask = async () => {
         console.log("Thank you!");
     }
 };
-const run_func = async () => {
+export const run_func = async () => {
     await askName();
     await questions();
     await ask();
